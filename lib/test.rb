@@ -1,3 +1,4 @@
+require 'pry'
 class Person
 
     def initialize name, bank_account=25, happiness=8, hygiene=8
@@ -29,18 +30,18 @@ class Person
         @hygiene = min_max(number)
     end
 
+    def greater attribute
+        @attribute = attribute
+        return true if @attribute > 7
+        false
+    end
+
     def happy?
         greater(@happiness)
     end
 
     def clean?
         greater(@hygiene)
-    end
-
-    def greater attribute
-        @attribute = attribute
-        return true if @attribute > 7
-        false
     end
 
     def get_paid salary
@@ -53,29 +54,7 @@ class Person
         "♪ Rub-a-dub just relaxing in the tub ♫"
     end
 
-    def work_out
-        self.hygiene -=3
-        self.happiness +=2
-        "♪ another one bites the dust ♫"
-    end
-
-    def call_friend friend
-        friend.happiness +=3
-        self.happiness += 3
-        "Hi #{friend.name}! It's #{@name}. How are you?"
-    end
-
-    def start_conversation friend, topic
-        if topic == "politics"
-            self.happiness -= 2
-            friend.happiness -= 2
-            "blah blah partisan blah lobbyist"
-        elsif topic == "weather"
-            self.happiness += 1
-            friend.happiness += 1
-            "blah blah sun blah rain"
-        else
-            "blah blah blah blah blah"
-        end
-    end
 end
+
+mark = Person.new("Mark")
+binding.pry
